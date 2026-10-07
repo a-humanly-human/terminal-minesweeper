@@ -6,10 +6,13 @@ class minesweeper():
     ['uncovered?','flagged?','display']
     def print_board(self,board):
 
-        top='  1 2 3 4 5 6 7 8 9 10'
+        top='   1 2 3 4 5 6 7 8 9'
         print(top)
         for i in range(self.size):
-            buffer=str(i+1)+' '
+            if i==10:
+                buffer=str(i+1)+' '
+            else:
+                buffer=str(i+1)+'  '
             for j in board[i]:
                 if j[0]==True:
                     buffer+=str(j[2])+' '
@@ -47,8 +50,9 @@ class minesweeper():
                 for k in range(-1,2):
                     for l in range(-1,2):
                         try:
-                            if board[i+k][j+l][2]=='M':
-                                c+=1
+                            if (i+k >=0) and (j+l >=0):
+                                if board[i+k][j+l][2]=='M':
+                                    c+=1
                         except:
                             pass
                 board[i][j][2]=c
@@ -86,26 +90,27 @@ class minesweeper():
         board[x][y][3]=True
         for i in range(-1,2):
             for j in range(-1,2):
-                try:
-                    if not board[x+i][y+j][3]:
-                        board[x+i][y+j][0]=True
-                        board[x+i][y+j][3]=True
-                        if board[x+i][y+j][2]==0:
-                            self.richochet(board,(x+i,y+j))
-                except:
-                    continue
+                if x+i>=0 and y+j>=0:
+                    try:
+                        if not board[x+i][y+j][3]:
+                            board[x+i][y+j][0]=True
+                            board[x+i][y+j][3]=True
+                            if board[x+i][y+j][2]==0:
+                                self.richochet(board,(x+i,y+j))
+                    except:
+                        continue
 
         return board
 
-terminal_minesweeper=minesweeper(10,10)
-mines=terminal_minesweeper.get_mines()
-board=terminal_minesweeper.create_starting_board(mines)
+terminal_minesweeper=minesweeper(9,10)
 # terminal_minesweeper.print_board(board)
-def main(board):
+def main_loop(board):
     while True:
         terminal_minesweeper.print_board(board)
         cmd=input()
         cmds=cmd.split()
+        if cmds[1]>terminal_minesweeper.size or cmds[1]<0 or cmds[2]>terminal_minesweeper.size or cmds[2]<0:
+            print('coordinate out of range, please try again')
         if cmds[0]=='uc':
             if (not board[int(cmds[1])-1][int(cmds[2])-1][0]) and (not board[int(cmds[1])-1][int(cmds[2])-1][1]):
                 board[int(cmds[1])-1][int(cmds[2])-1][0]=True
@@ -123,5 +128,30 @@ def main(board):
                 board[int(cmds[1])-1][int(cmds[2])-1][0]=False
             else:
                 print('already not flagged')
+        else:
+            print('unrecognised command, please try again')
         terminal_minesweeper.check(board)
-main(board)
+def run():
+    mines=terminal_minesweeper.get_mines()
+    board=terminal_minesweeper.create_starting_board(mines)
+    main_loop(board)
+
+def print_rules():
+    print('''
+Minesweeper is a game where you uncover squares in a minefield, and discover where the mines are
+this version has a 9 x 9 board with 10 mines in it
+commands:
+uc x y = uncovers square (x,y)
+fl x y = flags square (x,y)
+uf x y = unflags square (x,y)
+  y------>
+x
+|
+|
+|
+V
+Aim:
+uncover every square without a mine on it
+
+If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
+''')
