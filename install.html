@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>installation + usage · tmscli</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">tmscli</div>
+      <nav>
+        <a href="index.html">main</a>
+        <a href="about.html">about</a>
+        <a href="install.html" class="active">installation + usage</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>installation &amp; usage</h1>
+    <p class="subhead">A guide on how to install tmscli from pypi to how to customise number of mines and the size of the board.</p>
+
+    <div class="install-card">
+      <h2>Install from PyPI</h2>
+      <pre><code>pip install tmscli</code></pre>
+    </div>
+
+    <div class="usage-section">
+      <h2>Basic usage</h2>
+      <pre><code>tms</code></pre>
+      <p>Launches the basic 9x9 board with 10 mines</p>
+      
+      <h2>Size</h2>
+      <pre><code>tms -s SIZE</code></pre>
+      <p>customises the boards size</p>
+
+      <h2>Number of mines</h2>
+      <pre><code>tms -m NUM</code></pre>
+      <p>customises number of mines</p>
+
+      <h2>Rules</h2>
+      <pre><code>tms -r</code></pre>
+      <p>prints the rules</p>
+      <h2>In-game commands</h2>
+      <pre><code>uc x y</code></pre>
+      <p>uncovers square (x,y)</p>
+      <pre><code>fl x y</code></pre>
+      <p>flags square (x,y)</p>
+      <pre><code>uf x y</code></pre>
+      <p>unflags square (x,y)</p>
+      <p>Note:</p>
+      <p>&ensp;y-------&gt;
+        <br>
+         x
+        <br>
+         |
+        <br>
+         |
+        <br>
+         |
+        <br>
+         |
+        <br>
+         V
+      </p>
+      <p>use <pre><code>tms -r</code></pre> for a full guide</p>
+      
+    </div>
+
+
+  <footer>
+    <p>tmscli · PyPI module</p>
+  </footer>
+</body>
+</html>
