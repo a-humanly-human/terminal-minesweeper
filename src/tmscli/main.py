@@ -6,15 +6,10 @@ class minesweeper():
         self.num=num
     ['uncovered?','flagged?','display']
     def print_board(self,board):
-        top=(len(str(self.size))+2)*' '
+        top=' '+(self.size*2)*'_'
+        print(top)
         for i in range(self.size):
-            top+=str(i+1)+' '
-        print(top[:-1])
-        for i in range(self.size):
-            if 100>i>9:
-                buffer=str(i+1)+' '
-            else:
-                buffer=str(i+1)+'  '
+            buffer='| '
             for j in board[i]:
                 if j[0]==True:
                     buffer+=str(j[2])+' '
@@ -22,7 +17,9 @@ class minesweeper():
                     buffer+='F'+' '
                 else:
                     buffer+=' '+' '
-            print(buffer[:-1])
+            print(buffer[:-1]+'|')
+        bottom=' '+(len(top)-1)*'-'
+        print(bottom)
     def get_mines(self):
         mines=[]
         while len(mines)<self.num:
@@ -182,4 +179,3 @@ uncover every square without a mine on it
 
 If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
 ''')
-run()
