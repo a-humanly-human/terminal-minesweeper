@@ -1,15 +1,17 @@
 import random
+import argparse
 class minesweeper():
     def __init__(self,size,num):
         self.size=size
         self.num=num
     ['uncovered?','flagged?','display']
     def print_board(self,board):
-
-        top='   1 2 3 4 5 6 7 8 9'
-        print(top)
+        top=(len(str(self.size))+2)*' '
         for i in range(self.size):
-            if i==10:
+            top+=str(i+1)+' '
+        print(top[:-1])
+        for i in range(self.size):
+            if 100>i>9:
                 buffer=str(i+1)+' '
             else:
                 buffer=str(i+1)+'  '
@@ -102,14 +104,14 @@ class minesweeper():
 
         return board
 
-terminal_minesweeper=minesweeper(9,10)
+terminal_minesweeper=minesweeper(9,5)
 # terminal_minesweeper.print_board(board)
 def main_loop(board):
     while True:
         terminal_minesweeper.print_board(board)
         cmd=input()
         cmds=cmd.split()
-        if cmds[1]>terminal_minesweeper.size or cmds[1]<0 or cmds[2]>terminal_minesweeper.size or cmds[2]<0:
+        if int(cmds[1])>terminal_minesweeper.size or int(cmds[1])<0 or int(cmds[2])>terminal_minesweeper.size or int(cmds[2])<0:
             print('coordinate out of range, please try again')
         if cmds[0]=='uc':
             if (not board[int(cmds[1])-1][int(cmds[2])-1][0]) and (not board[int(cmds[1])-1][int(cmds[2])-1][1]):
@@ -132,6 +134,31 @@ def main_loop(board):
             print('unrecognised command, please try again')
         terminal_minesweeper.check(board)
 def run():
+    p=argparse.ArgumentParser(description='Minesweeper CLI')
+    p.add_argument(
+        '-r','--rules',
+        action='store_true',
+        help='gives rules'
+    )
+    p.add_argument(
+        '-s','--size',
+        type=int,
+        default=9,
+        help='set size to x'
+    )
+    p.add_argument(
+        '-m','--mine_num',
+        type=int,
+        default=5,
+        help='set number of mines to x'
+    )
+    args=p.parse_args()
+    if args.rules:
+        print_rules()
+    if args.size:
+        terminal_minesweeper.size=args.size
+    if args.mine_num:
+        terminal_minesweeper.num=args.mine_num
     mines=terminal_minesweeper.get_mines()
     board=terminal_minesweeper.create_starting_board(mines)
     main_loop(board)
@@ -155,3 +182,4 @@ uncover every square without a mine on it
 
 If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
 ''')
+run()
