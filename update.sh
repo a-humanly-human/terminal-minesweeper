@@ -22,4 +22,7 @@ git commit -m "New version"
 echo "Pushing changes to remote..."
 git push
 
+echo "Updating current installed module"
+pip install --upgrade tmscli
+
 echo "All steps completed successfully!"
