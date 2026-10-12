@@ -104,32 +104,37 @@ class minesweeper():
 terminal_minesweeper=minesweeper(9,5)
 # terminal_minesweeper.print_board(board)
 def main_loop(board):
-    while True:
-        terminal_minesweeper.print_board(board)
-        cmd=input()
-        cmds=cmd.split()
-        if int(cmds[1])>terminal_minesweeper.size or int(cmds[1])<0 or int(cmds[2])>terminal_minesweeper.size or int(cmds[2])<0:
-            print('coordinate out of range, please try again')
-        if cmds[0]=='uc':
-            if (not board[int(cmds[1])-1][int(cmds[2])-1][0]) and (not board[int(cmds[1])-1][int(cmds[2])-1][1]):
-                board[int(cmds[1])-1][int(cmds[2])-1][0]=True
-                if board[int(cmds[1])-1][int(cmds[2])-1][2]==0:
-                    board=terminal_minesweeper.richochet(board,(int(cmds[1])-1,int(cmds[2])-1))
+    try:
+        while True:
+            terminal_minesweeper.print_board(board)
+            cmd=input()
+            cmds=cmd.split()
+            if int(cmds[1])>terminal_minesweeper.size or int(cmds[1])<0 or int(cmds[2])>terminal_minesweeper.size or int(cmds[2])<0:
+                print('coordinate out of range, please try again')
+            if cmds[0]=='uc':
+                if (not board[int(cmds[1])-1][int(cmds[2])-1][0]) and (not board[int(cmds[1])-1][int(cmds[2])-1][1]):
+                    board[int(cmds[1])-1][int(cmds[2])-1][0]=True
+                    if board[int(cmds[1])-1][int(cmds[2])-1][2]==0:
+                        board=terminal_minesweeper.richochet(board,(int(cmds[1])-1,int(cmds[2])-1))
+                else:
+                    print('already uncovered')
+            elif cmds[0]=='fl':
+                if not board[int(cmds[1])-1][int(cmds[2])-1][1]:
+                    board[int(cmds[1])-1][int(cmds[2])-1][1]=True
+                else:
+                    print('already flagged')
+            elif cmds[0]=='uf':
+                if board[int(cmds[1])-1][int(cmds[2])-1][2]:
+                    board[int(cmds[1])-1][int(cmds[2])-1][0]=False
+                else:
+                    print('already not flagged')
             else:
-                print('already uncovered')
-        elif cmds[0]=='fl':
-            if not board[int(cmds[1])-1][int(cmds[2])-1][1]:
-                board[int(cmds[1])-1][int(cmds[2])-1][1]=True
-            else:
-                print('already flagged')
-        elif cmds[0]=='uf':
-            if board[int(cmds[1])-1][int(cmds[2])-1][2]:
-                board[int(cmds[1])-1][int(cmds[2])-1][0]=False
-            else:
-                print('already not flagged')
-        else:
-            print('unrecognised command, please try again')
-        terminal_minesweeper.check(board)
+                print('unrecognised command, please try again')
+            terminal_minesweeper.check(board)
+    except KeyboardInterrupt:
+        print('Interrupted')
+    except:
+        print('ERROR')
 def run():
     p=argparse.ArgumentParser(description='Minesweeper CLI')
     p.add_argument(
@@ -175,7 +180,8 @@ x
 |
 V
 Aim:
-uncover every square without a mine on it
+uncover every square without a mine on it.
 
 If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
 ''')
+# run()

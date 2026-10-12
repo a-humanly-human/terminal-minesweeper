@@ -1,19 +1,25 @@
 #!/bin/bash
 
-# 1. Start all three processes in the background simultaneously
-echo "Starting tasks in parallel..."
+# Exit immediately if any command fails
+set -e
 
-hatch build &
-PID_BUILD=$!
+echo "Building the package with Hatch..."
+hatch build
 
-hatch publish &
-PID_PASS=$!
+echo "Publishing the package to PyPI..."
+hatch publish
 
-# Replace 'pip install --upgrade ...' with your actual upgrade command if different
-pip install --upgrade tmscli&
-PID_PUBLISH=$!
+echo "Pulling latest changes from remote Git repository..."
+# Use || true so the script continues even if there is no tracking upstream configured yet
+git pull || echo "Pull skipped or failed, continuing..."
 
-# 2. Wait for all background processes to complete
-wait $PID_BUILD $PID_PUBLISH $PID_UPGRADE
+echo "Staging changes..."
+git add .
 
-echo "All tasks finished!"
+echo "Committing changes..."
+git commit -m "New version"
+
+echo "Pushing changes to remote..."
+git push
+
+echo "All steps completed successfully!"
