@@ -81,9 +81,11 @@ class minesweeper():
         if self.check_death(board):
             print('GAME OVER')
             self.print_ending(board)
+            exit()
         elif self.check_success(board):
             print('YOU WIN')
             self.print_ending(board)
+            exit()
     def richochet(self,board,coord):
         x,y=coord
         board[x][y][3]=True
@@ -184,4 +186,4 @@ uncover every square without a mine on it.
 
 If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
 ''')
-# run()
+run()
