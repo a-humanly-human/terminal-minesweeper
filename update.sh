@@ -17,7 +17,8 @@ echo "Staging changes..."
 git add .
 
 echo "Committing changes..."
-git commit -m "New version"
+read reason
+git commit -m "$reason"
 
 echo "Pushing changes to remote..."
 git push
