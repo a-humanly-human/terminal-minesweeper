@@ -170,7 +170,7 @@ def run():
 def print_rules():
     print('''
 Minesweeper is a game where you uncover squares in a minefield, and discover where the mines are
-this version has a 9 x 9 board with 10 mines in it
+this version has a 9 x 9 board with 10 mines in it.
 commands:
 uc x y = uncovers square (x,y)
 fl x y = flags square (x,y)
@@ -184,6 +184,11 @@ V
 Aim:
 uncover every square without a mine on it.
 
+Symbols:
+F = flagged
+A space = covered (unknown)
+A number = the number of mines around it
+M = a mine (game over)
 If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
 ''')
 run()
