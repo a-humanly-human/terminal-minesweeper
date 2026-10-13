@@ -194,7 +194,6 @@ p {
 .install-card p {
   color: #cbd5e1;
 }
-
 pre {
   background: #0b1e2e;
   color: #b4e6ff;
@@ -247,7 +246,13 @@ pre code {
   border: 1px dashed #b4d9ec;
   margin: 2rem 0 0;
 }
+.dependency-link{
+  color:rgb(255,255,255);
+}
 
+.dependency-link:hover{
+  color:rgb(125,125,150);
+}
 /* footer */
 footer {
   text-align: center;

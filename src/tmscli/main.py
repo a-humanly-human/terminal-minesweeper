@@ -80,12 +80,11 @@ class minesweeper():
     def check(self,board):
         if self.check_death(board):
             print('GAME OVER')
-            self.print_ending(board)
-            exit()
+            return True
         elif self.check_success(board):
             print('YOU WIN')
-            self.print_ending(board)
-            exit()
+            return True
+        return False
     def richochet(self,board,coord):
         x,y=coord
         board[x][y][3]=True
@@ -105,14 +104,23 @@ class minesweeper():
 
 terminal_minesweeper=minesweeper(9,5)
 # terminal_minesweeper.print_board(board)
+def throw():
+    print('unrecognised command, please try again')
 def main_loop(board):
     try:
         while True:
             terminal_minesweeper.print_board(board)
             cmd=input()
             cmds=cmd.split()
-            if int(cmds[1])>terminal_minesweeper.size or int(cmds[1])<0 or int(cmds[2])>terminal_minesweeper.size or int(cmds[2])<0:
+            if len(cmds)!=3:
+                throw()
+                continue
+            elif cmds[0] not in ['uc','uf','fl']:
+                throw()
+                continue
+            if int(cmds[1])>terminal_minesweeper.size or int(cmds[1])<=0 or int(cmds[2])>terminal_minesweeper.size or int(cmds[2])<=0:
                 print('coordinate out of range, please try again')
+                continue
             if cmds[0]=='uc':
                 if (not board[int(cmds[1])-1][int(cmds[2])-1][0]) and (not board[int(cmds[1])-1][int(cmds[2])-1][1]):
                     board[int(cmds[1])-1][int(cmds[2])-1][0]=True
@@ -131,12 +139,19 @@ def main_loop(board):
                 else:
                     print('already not flagged')
             else:
-                print('unrecognised command, please try again')
-            terminal_minesweeper.check(board)
+                throw()
+                continue
+            if terminal_minesweeper.check(board):
+                terminal_minesweeper.print_ending(board)
+                exit()
     except KeyboardInterrupt:
         print('Interrupted')
+        terminal_minesweeper.print_ending(board)
     except:
+        if terminal_minesweeper.check(board):
+            exit()
         print('ERROR')
+        terminal_minesweeper.print_ending(board)
 def run():
     p=argparse.ArgumentParser(description='Minesweeper CLI')
     p.add_argument(
@@ -168,19 +183,21 @@ def run():
     main_loop(board)
 
 def print_rules():
-    print('''
+    place='''
+  y------>
+x
+|
+|
+|
+V'''
+    rules='''
 Minesweeper is a game where you uncover squares in a minefield, and discover where the mines are
 this version has a 9 x 9 board with 10 mines in it.
 commands:
 uc x y = uncovers square (x,y)
 fl x y = flags square (x,y)
 uf x y = unflags square (x,y)
-  y------>
-x
-|
-|
-|
-V
+#####
 Aim:
 uncover every square without a mine on it.
 
@@ -190,5 +207,12 @@ A space = covered (unknown)
 A number = the number of mines around it
 M = a mine (game over)
 If you step on a mine you lose, the number on the square is how many mines are around it (3 x 3 radius)
-''')
+'''
+    for i in rules.split('\n'):
+        if i=='#####':
+            print(place)
+        else:
+            print(i.rstrip())
+        input()
+    input('press enter to start:')
 run()

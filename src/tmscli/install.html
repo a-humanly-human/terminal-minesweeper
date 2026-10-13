@@ -21,8 +21,25 @@
   <main class="container">
     <h1>installation &amp; usage</h1>
     <p class="subhead">A guide on how to install tmscli from pypi to how to customise number of mines and the size of the board.</p>
-
+    <h2>Dependencies</h2>
     <div class="install-card">
+
+      <h2>Install Python</h2>
+      <a href="https://www.python.org/getit/windows/" class="dependency-link">https://www.python.org/getit/windows/</a>
+    </div>
+    <div class="install-card">
+      <h2>Check for Pip</h2>
+      <h3>first check</h3>
+      <pre><code>pip --version</code></pre>
+      <p>If a version shows up, precede to <a href="#installation-PyPi" class="dependency-link">Install from PyPi</a></p>
+      <br>
+      <p>If "Not Recognized" appears, follow the pip installation</p>
+      <h3>Installing pip</h3>
+      <pre><code>python -m ensurepip --upgrade</code></pre>
+      <p>then repeat the previous command (pip --version) to check for success</p>
+      
+    </div>
+    <div class="install-card" id="installation-PyPi">
       <h2>Install from PyPI</h2>
       <pre><code>pip install tmscli</code></pre>
     </div>
