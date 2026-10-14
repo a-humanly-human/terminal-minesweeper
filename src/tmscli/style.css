@@ -309,3 +309,66 @@ footer {
     font-size: 0.85rem;
   }
 }
+.changelog-entry {
+  background: #ffffff;
+  padding: 1.8rem 2rem 1.2rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  border: 1px solid #e1eef5;
+  border-left: 6px solid #2d7a9b;
+  margin-bottom: 1.8rem;
+}
+
+.changelog-entry h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.version-date {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #2d7a9b;
+  color: #ffffff;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.changelog-entry ul {
+  margin: 0.5rem 0 0 1.2rem;
+  padding: 0;
+}
+
+.changelog-entry li {
+  margin-bottom: 0.5rem;
+  color: #1e2f3f;
+}
+
+.muted {
+  color: #7a94a5;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 0.8rem;
+}
+
+/* responsive for new pages */
+@media (max-width: 700px) {
+  .screenshot-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .screenshot-card,
+  .changelog-entry {
+    padding: 1.5rem 1.2rem 0.8rem;
+  }
+
+  .screenshot-card pre {
+    font-size: 0.7rem;
+    padding: 0.8rem;
+  }
+}

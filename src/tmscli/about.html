@@ -1,3 +1,4 @@
+<!-- about.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,65 +13,37 @@
       <div class="logo">tmscli</div>
       <nav>
         <a href="index.html">main</a>
-        <a href="about.html" class="active">about</a>
+        <a href="about.html">about</a>
         <a href="install.html">installation + usage</a>
+        <a href="screenshots.html">screenshots</a>
+        <a href="changelog.html">changelog</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <h1>about tmscli</h1>
-    <p class="subhead">A fun little project from 2024 to see who could code faster</p>
+    <p class="subhead">A terminal Minesweeper, customisable to make it suitable for you.</p>
 
     <div class="about-section">
-      <h2>Philosophy</h2>
-      <p>tmscli started as a fun competition to see whether python or C++ could make minesweeper faster and run smoother, now the python version has been uploaded to PyPi and can be downloaded using pip.</p>
-      <p>It is inteded to engage people into what coding can get you and should not be used to personal advantage (not sure how, but it's a must say)</p>
+      <h2>What is tmscli?</h2>
+      <p>tmscli is a Python module that brings Minesweeper into your terminal. It's lightweight, fast, and built for those moments when you're bored but still want to stay in the command line.</p>
     </div>
 
     <div class="about-section">
-      <h2>Behind the scenes</h2>
-      <p>tmscli is fully python and relies on random to build the minefield</p>
-      <p>lets take a look at some code</p>
-      <pre><code>    while True:
-        terminal_minesweeper.print_board(board)
-        cmd=input()
-        cmds=cmd.split()
-        if int(cmds[1])>terminal_minesweeper.size or int(cmds[1])<0 or int(cmds[2])>terminal_minesweeper.size or int(cmds[2])<0:
-            print('coordinate out of range, please try again')
-        if cmds[0]=='uc':
-            if (not board[int(cmds[1])-1][int(cmds[2])-1][0]) and (not board[int(cmds[1])-1][int(cmds[2])-1][1]):
-                board[int(cmds[1])-1][int(cmds[2])-1][0]=True
-                if board[int(cmds[1])-1][int(cmds[2])-1][2]==0:
-                    board=terminal_minesweeper.richochet(board,(int(cmds[1])-1,int(cmds[2])-1))
-            else:
-                print('already uncovered')
-        elif cmds[0]=='fl':
-            if not board[int(cmds[1])-1][int(cmds[2])-1][1]:
-                board[int(cmds[1])-1][int(cmds[2])-1][1]=True
-            else:
-                print('already flagged')
-        elif cmds[0]=='uf':
-            if board[int(cmds[1])-1][int(cmds[2])-1][2]:
-                board[int(cmds[1])-1][int(cmds[2])-1][0]=False
-            else:
-                print('already not flagged')
-        else:
-            print('unrecognised command, please try again')
-        terminal_minesweeper.check(board)</code></pre>
-        <p>This is a rather large chunk of code, and is what the main loop does</p>
-        <p>as you can see it has three commands, uc, fl, and uf. Each doing something different. If it does not think the input is valid, it will output what it thinks the error is. (May be inaccurate)</p>
+      <h2>Why it exists</h2>
+      <p>Bored of sitting there, with all your work done, but unable to do anything?</p>
+      <p>tmscli brings in minesweeper to the terminal and is customisable to make it suitable for you.</p>
     </div>
 
     <div class="about-section">
-      <h2>Github Repository</h2>
-      <p>tmscli is 100% owned by a-humanly-human.</p>
-      <p>Link to Repository: <a href="https://github.com/a-humanly-human/terminal-minesweeper/">https://github.com/a-humanly-human/terminal-minesweeper/</a></p>
+      <h2>Customisation</h2>
+      <p>tmscli lets you adjust the game to your liking — board size, difficulty, and display format. The v0.3.0 release added a border to the minesweeper format along with minor bug fixes.</p>
     </div>
   </main>
 
   <footer>
-    <p>tmscli · PyPI module</p>
+    <p>tmscli · PyPI module · terminal minesweeper</p>
   </footer>
 </body>
 </html>
