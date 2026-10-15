@@ -3,27 +3,32 @@
 # Exit immediately if any command fails
 set -e
 
-echo "Building the package with Hatch..."
-hatch build
+read commit
+read pypi
+if [ "$pypi"=="yes" ]; then
 
-echo "Publishing the package to PyPI..."
-hatch publish
+    echo "Building the package with Hatch..."
+    hatch build
 
-echo "Pulling latest changes from remote Git repository..."
-# Use || true so the script continues even if there is no tracking upstream configured yet
-git pull || echo "Pull skipped or failed, continuing..."
+    echo "Publishing the package to PyPI..."
+    hatch publish
 
-echo "Staging changes..."
-git add .
+fi
+if [ "$commit"=="yes" ]; then
+    echo "Pulling latest changes from remote Git repository..."
+    git pull || echo "Pull skipped or failed, continuing..."
 
-echo "Committing changes..."
-read reason
-git commit -m "$reason"
+    echo "Staging changes..."
+    git add .
 
-echo "Pushing changes to remote..."
-git push
+    echo "Committing changes..."
+    read reason
+    git commit -m "$reason"
+
+    echo "Pushing changes to remote..."
+    git push
+fi
 
 echo "Updating current installed module"
 pip install --upgrade tmscli
-
 echo "All steps completed successfully!"
