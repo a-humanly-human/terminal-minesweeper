@@ -5,7 +5,7 @@ set -e
 
 read commit
 read pypi
-if [ "$pypi"=="yes" ]; then
+if [ "$pypi" == "yes" ]; then
 
     echo "Building the package with Hatch..."
     hatch build
@@ -14,7 +14,7 @@ if [ "$pypi"=="yes" ]; then
     hatch publish
 
 fi
-if [ "$commit"=="yes" ]; then
+if [ "$commit" == "yes" ]; then
     echo "Pulling latest changes from remote Git repository..."
     git pull || echo "Pull skipped or failed, continuing..."
 
