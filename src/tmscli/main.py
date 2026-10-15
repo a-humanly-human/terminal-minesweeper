@@ -129,7 +129,7 @@ def main_loop(board):
                 else:
                     print('already uncovered')
             elif cmds[0]=='fl':
-                if not board[int(cmds[1])-1][int(cmds[2])-1][1]:
+                if not board[int(cmds[1])-1][int(cmds[2])-1][1] and not board[int(cmds[1])-1][int(cmds[2])-1][0]:
                     board[int(cmds[1])-1][int(cmds[2])-1][1]=True
                 else:
                     print('already flagged')
