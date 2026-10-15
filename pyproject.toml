@@ -6,6 +6,7 @@ build-backend = "hatchling.build"
 name = "tmscli"
 version = "0.3.6"
 description = "runs minesweeper in your terminal, type rules for how to play"
+readme="README.md"
 dependencies = []
 
 [project.scripts]
