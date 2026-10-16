@@ -32,22 +32,93 @@
     </div>
 
     <div class="usage-section">
-      <h2>Basic usage</h2>
+      <h2>Command-line flags</h2>
 
-      <h3>1. Start the game</h3>
+      <table class="flags-table">
+        <thead>
+          <tr>
+            <th>Flag</th>
+            <th>Short</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--size</code></td>
+            <td><code>-s</code></td>
+            <td>9</td>
+            <td>Set the board size to <em>x</em> (creates an <em>x</em> × <em>x</em> grid).</td>
+          </tr>
+          <tr>
+            <td><code>--mine_num</code></td>
+            <td><code>-m</code></td>
+            <td>5</td>
+            <td>Set the number of mines to <em>x</em>.</td>
+          </tr>
+          <tr>
+            <td><code>--rules</code></td>
+            <td><code>-r</code></td>
+            <td>off</td>
+            <td>Show the rules and controls before starting.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Examples</h3>
       <pre><code>tmscli</code></pre>
-      <p>Launches Minesweeper directly in your terminal with the default board.</p>
+      <p>Start with the default 9×9 board and 5 mines.</p>
 
-      <h3>2. Set the board size</h3>
-      <pre><code>tmscli --size 10</code></pre>
-      <p>Or use the short form:</p>
-      <pre><code>tmscli -s 10</code></pre>
-      <p>Adjust the board size to set your own difficulty.</p>
+      <pre><code>tmscli -s 16 -m 40</code></pre>
+      <p>Start with a 16×16 board containing 40 mines.</p>
 
-      <h3>3. Controls</h3>
-      <p><code>uc x y</code> to uncover</p>
-      <p><code>fl x y</code> to flag</p>
-      <p><code>uf x y</code> to unflag</p>
+      <pre><code>tmscli --rules</code></pre>
+      <p>Read the rules first, then start the game.</p>
+    </div>
+
+    <div class="usage-section">
+      <h2>In-game commands</h2>
+      <p>Once the board is printed, type a command and press enter. Each command takes three parts: an action followed by two coordinates.</p>
+
+      <table class="flags-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>uc x y</code></td>
+            <td>Uncover the square at (x, y).</td>
+          </tr>
+          <tr>
+            <td><code>fl x y</code></td>
+            <td>Flag the square at (x, y).</td>
+          </tr>
+          <tr>
+            <td><code>uf x y</code></td>
+            <td>Unflag the square at (x, y).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Board symbols</h3>
+      <ul class="symbol-list">
+        <li><code>F</code> — flagged</li>
+        <li><code>&nbsp;</code> (space) — covered / unknown</li>
+        <li><code>1</code>–<code>8</code> — number of mines in the surrounding 3×3 area</li>
+        <li><code>M</code> — a mine (game over)</li>
+      </ul>
+
+      <h3>Coordinates</h3>
+      <p>Coordinates are 1-indexed and must be within the board. The <code>x</code> axis runs down the board, and the <code>y</code> axis runs across:</p>
+      <pre><code>  y------>
+x
+|
+|
+|
+V</code></pre>
     </div>
 
     <div class="lorem-note">

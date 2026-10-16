@@ -372,3 +372,70 @@ footer {
     padding: 0.8rem;
   }
 }
+/* ---- tables & lists (usage page) ---- */
+
+.flags-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e1eef5;
+}
+
+.flags-table th,
+.flags-table td {
+  text-align: left;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #eef6fb;
+  font-size: 0.95rem;
+}
+
+.flags-table th {
+  background: #f0f8fd;
+  font-weight: 600;
+  color: #0f2b3d;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.flags-table tr:last-child td {
+  border-bottom: none;
+}
+
+.flags-table tr:hover td {
+  background: #fafdff;
+}
+
+.symbol-list {
+  list-style: none;
+  margin: 1rem 0 1.5rem;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e1eef5;
+  overflow: hidden;
+}
+
+.symbol-list li {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #eef6fb;
+  font-size: 0.95rem;
+}
+
+.symbol-list li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 700px) {
+  .flags-table {
+    font-size: 0.85rem;
+  }
+
+  .flags-table th,
+  .flags-table td {
+    padding: 0.6rem 0.7rem;
+  }
+}
