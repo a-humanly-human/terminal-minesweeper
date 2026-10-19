@@ -1,5 +1,6 @@
 import random
 import argparse
+import importlib.metadata
 class minesweeper():
     def __init__(self,size,num):
         self.size=size
@@ -153,6 +154,10 @@ def main_loop(board):
         print('ERROR')
         terminal_minesweeper.print_ending(board)
 def run():
+    try:
+        __version__ = importlib.metadata.version("your-package-name")
+    except importlib.metadata.PackageNotFoundError:
+        __version__ = "0.0.0-dev"
     p=argparse.ArgumentParser(description='Minesweeper CLI')
     p.add_argument(
         '-r','--rules',
@@ -171,6 +176,12 @@ def run():
         default=5,
         help='set number of mines to x'
     )
+    p.add_argument(
+        "-v", "--version", 
+        action="version", 
+        version=f"%(prog)s {__version__}"
+    )
+
     args=p.parse_args()
     if args.rules:
         print_rules()
