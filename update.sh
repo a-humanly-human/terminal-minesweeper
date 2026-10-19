@@ -7,28 +7,28 @@ read commit
 read pypi
 if [ "$pypi" == "yes" ]; then
 
-    echo "Building the package with Hatch..."
+    echo "   Building the package with Hatch..."
     hatch build
 
-    echo "Publishing the package to PyPI..."
+    echo "   Publishing the package to PyPI..."
     hatch publish
 
 fi
 if [ "$commit" == "yes" ]; then
-    echo "Pulling latest changes from remote Git repository..."
-    git pull || echo "Pull skipped or failed, continuing..."
+    echo "   Pulling latest changes from remote Git repository..."
+    git pull || echo "   Pull skipped or failed, continuing..."
 
-    echo "Staging changes..."
+    echo "   Staging changes..."
     git add .
 
-    echo "Committing changes..."
+    echo "   Committing changes..."
     read reason
     git commit -m "$reason"
 
-    echo "Pushing changes to remote..."
+    echo "   Pushing changes to remote..."
     git push
 fi
 
-echo "Updating current installed module"
+echo "   Updating current installed module"
 pip install --upgrade tmscli
-echo "All steps completed successfully!"
+echo "   All steps completed successfully!"
