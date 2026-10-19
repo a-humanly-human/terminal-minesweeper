@@ -127,15 +127,15 @@ def main_loop(board):
                     if board[int(cmds[1])-1][int(cmds[2])-1][2]==0:
                         board=terminal_minesweeper.richochet(board,(int(cmds[1])-1,int(cmds[2])-1))
                 else:
-                    print('already uncovered')
+                    print('already uncovered or flagged')
             elif cmds[0]=='fl':
                 if not board[int(cmds[1])-1][int(cmds[2])-1][1] and not board[int(cmds[1])-1][int(cmds[2])-1][0]:
                     board[int(cmds[1])-1][int(cmds[2])-1][1]=True
                 else:
-                    print('already flagged')
+                    print('already flagged or already uncovered')
             elif cmds[0]=='uf':
-                if board[int(cmds[1])-1][int(cmds[2])-1][2]:
-                    board[int(cmds[1])-1][int(cmds[2])-1][0]=False
+                if board[int(cmds[1])-1][int(cmds[2])-1][1]:
+                    board[int(cmds[1])-1][int(cmds[2])-1][1]=False
                 else:
                     print('already not flagged')
             else:
