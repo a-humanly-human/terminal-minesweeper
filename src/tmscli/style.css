@@ -264,51 +264,6 @@ footer {
   margin-top: 1rem;
 }
 
-/* responsive */
-@media (max-width: 700px) {
-  .header-inner {
-    flex-direction: column;
-    gap: 0.8rem;
-    align-items: flex-start;
-    padding: 1rem 1.5rem;
-  }
-
-  nav {
-    gap: 1.2rem;
-    width: 100%;
-  }
-
-  .container {
-    padding: 0 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .subhead {
-    font-size: 1rem;
-    padding-left: 0.8rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-
-  .install-card,
-  .about-section,
-  .usage-section,
-  .lorem-block {
-    padding: 1.5rem 1.2rem 0.8rem;
-  }
-
-  pre {
-    padding: 0.8rem 1rem;
-    font-size: 0.85rem;
-  }
-}
 .changelog-entry {
   background: #ffffff;
   padding: 1.8rem 2rem 1.2rem;
@@ -355,24 +310,7 @@ footer {
   margin-top: 0.8rem;
 }
 
-/* responsive for new pages */
-@media (max-width: 700px) {
-  .screenshot-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
 
-  .screenshot-card,
-  .changelog-entry {
-    padding: 1.5rem 1.2rem 0.8rem;
-  }
-
-  .screenshot-card pre {
-    font-size: 0.7rem;
-    padding: 0.8rem;
-  }
-}
-/* ---- tables & lists (usage page) ---- */
 
 .flags-table {
   width: 100%;
@@ -429,16 +367,6 @@ footer {
   border-bottom: none;
 }
 
-@media (max-width: 700px) {
-  .flags-table {
-    font-size: 0.85rem;
-  }
-
-  .flags-table th,
-  .flags-table td {
-    padding: 0.6rem 0.7rem;
-  }
-}
 .embed-card {
   background: #ffffff;
   border: 1px solid #e1eef5;
@@ -466,10 +394,4 @@ footer {
   color: #2d7a9b;
   font-weight: 500;
   word-break: break-all;
-}
-
-@media (max-width: 700px) {
-  .embed-frame {
-    height: 550px;
-  }
 }

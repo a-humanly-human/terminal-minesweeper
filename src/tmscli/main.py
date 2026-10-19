@@ -192,7 +192,6 @@ def run():
     mines=terminal_minesweeper.get_mines()
     board=terminal_minesweeper.create_starting_board(mines)
     main_loop(board)
-
 def print_rules():
     place='''
   y------>
