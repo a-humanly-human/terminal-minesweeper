@@ -155,7 +155,7 @@ def main_loop(board):
         terminal_minesweeper.print_ending(board)
 def run():
     try:
-        __version__ = importlib.metadata.version("your-package-name")
+        __version__ = importlib.metadata.version("tmscli")
     except importlib.metadata.PackageNotFoundError:
         __version__ = "0.0.0-dev"
     p=argparse.ArgumentParser(description='Minesweeper CLI')
