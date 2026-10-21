@@ -1,11 +1,32 @@
 import random
 import argparse
 import importlib.metadata
+colors=['\033[31m','\033[32m','\033[33m','\033[34m','\033[35m','\033[36m','\033[37m','\033[38m','\033[39m']
+MINE='\033[30m'
+FLAG='\033[29m'
+RESET = '\033[0m'
+
 class minesweeper():
     def __init__(self,size,num):
         self.size=size
         self.num=num
     ['uncovered?','flagged?','display']
+    def colored(self,string):
+        new=f'|'
+        c=0
+        for i in string:
+            c+=1
+            if i != '|':
+                if i in ['0','1','2','3','4','5','6','7','8']:
+                    new+=f'{colors[int(i)]}{i}{RESET}'
+                elif i == 'M':
+                    new+=f'{MINE}{i}{RESET}'
+                elif i == 'F':
+                    new+=f'{FLAG}{i}{RESET}'
+                else:
+                    new+=' '
+        new+='|'
+        return new
     def print_board(self,board):
         top=' '+(self.size*2)*'_'
         print(top)
@@ -18,7 +39,7 @@ class minesweeper():
                     buffer+='F'+' '
                 else:
                     buffer+=' '+' '
-            print(buffer[:-1]+'|')
+            print(self.colored(buffer[:-1]+'|'))
         bottom=' '+(len(top)-1)*'-'
         print(bottom)
     def get_mines(self):
@@ -58,11 +79,15 @@ class minesweeper():
                 board[i][j][2]=c
         return board
     def print_ending(self,board):
+        top=' '+(self.size*2)*'_'
+        print(top)
         for i in board:
             buffer=''
             for j in i:
                 buffer+=str(j[2])+' '
-            print(buffer)
+            print(self.colored(buffer))
+        bottom=' '+(len(top)-1)*'-'
+        print(bottom)
         exit()
     def check_success(self,board):
         for i in board:
