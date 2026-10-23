@@ -107,7 +107,7 @@ class minesweeper():
                         return False
         # end=time()
 
-        return True
+        return 1
     def check_death(self,board):
         for i in board:
             for j in i:
