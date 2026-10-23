@@ -1,6 +1,8 @@
 import random
 import argparse
 import importlib.metadata
+import csv
+from time import time
 colors=['\033[31m','\033[32m','\033[33m','\033[34m','\033[35m','\033[36m','\033[37m','\033[38m','\033[39m']
 MINE='\033[30m'
 FLAG='\033[29m'
@@ -11,6 +13,15 @@ class minesweeper():
         self.size=size
         self.num=num
     ['uncovered?','flagged?','display']
+    def log(self,user,t,size,num,score):
+        with open('./src/tmscli/.scores/high_scores.csv', mode='a', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow([user,t,size,num,round(score)])
+
+    def get_score(self,t,size,num):
+        ratio=size/num
+        score=1000/(t*ratio)
+        return t,size,num,score
     def colored(self,string):
         new=f'|'
         c=0
@@ -88,13 +99,14 @@ class minesweeper():
             print(self.colored(buffer))
         bottom=' '+(len(top)-1)*'-'
         print(bottom)
-        exit()
     def check_success(self,board):
         for i in board:
             for j in i:
                 if j[2]!='M':
                     if not j[0]:
                         return False
+        # end=time()
+
         return True
     def check_death(self,board):
         for i in board:
@@ -109,7 +121,7 @@ class minesweeper():
             return True
         elif self.check_success(board):
             print('YOU WIN')
-            return True
+            return 1
         return False
     def richochet(self,board,coord):
         x,y=coord
@@ -133,6 +145,7 @@ terminal_minesweeper=minesweeper(9,5)
 def throw():
     print('unrecognised command, please try again')
 def main_loop(board):
+    start=time()
     try:
         while True:
             terminal_minesweeper.print_board(board)
@@ -167,16 +180,17 @@ def main_loop(board):
             else:
                 throw()
                 continue
-            if terminal_minesweeper.check(board):
+            k=terminal_minesweeper.check(board)
+            if k:
                 terminal_minesweeper.print_ending(board)
+                if k==1:
+                    end=time()
+                    print(f'Score:{round(terminal_minesweeper.get_score(round(end-start,3),terminal_minesweeper.size,terminal_minesweeper.num)[3])}')
+                    a,b,c,d=terminal_minesweeper.get_score(round(end-start,3),terminal_minesweeper.size,terminal_minesweeper.num)
+                    terminal_minesweeper.log(input('Username >>> '),a,b,c,d)
                 exit()
     except KeyboardInterrupt:
         print('Interrupted')
-        terminal_minesweeper.print_ending(board)
-    except:
-        if terminal_minesweeper.check(board):
-            exit()
-        print('ERROR')
         terminal_minesweeper.print_ending(board)
 def run():
     try:
@@ -250,4 +264,31 @@ If you step on a mine you lose, the number on the square is how many mines are a
             print(i.rstrip())
         input()
     input('press enter to start:')
-run()
+def upper(l):
+    return int(l[4])
+def get_top(num=5):
+    p=argparse.ArgumentParser(description='scoreboard')
+    p.add_argument(
+        '-s','--scores',
+        type=int,
+        default=5,
+        help='set size to x'
+    )
+    args=p.parse_args()
+    if args.scores:
+        num=args.scores
+    with open('./src/tmscli/.scores/high_scores.csv', mode='r') as file:
+        reader=csv.reader(file)
+        header=next(reader)
+        head=['time','size','mines','score']
+        r=list(reader)
+        r.sort(key=upper)
+        r.reverse()
+        for i in range(num):
+            print(str(i+1)+'. '+r[i][0])
+            for j in range(4):
+                print('    '+head[j]+': '+ r[i][j+1])
+                
+                
+# get_top()
+# run()
