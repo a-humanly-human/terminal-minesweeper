@@ -1,4 +1,4 @@
-
+/* style.css — shared across all pages */
 
 * {
   margin: 0;
@@ -74,7 +74,7 @@ nav a.active {
 }
 
 
-.containe {
+.container {
   max-width: 1100px;
   margin: 2rem auto 3rem;
   padding: 0 2rem;
@@ -148,7 +148,7 @@ p {
 }
 
 
-.lorem-block {
+.main-text {
   background: #eef6fb;
   padding: 2rem 2rem 1.2rem;
   border-radius: 18px;
@@ -156,9 +156,11 @@ p {
   border-left: 6px solid #2d7a9b;
 }
 
-.lorem-block h2 {
+.main-text h2 {
   margin-top: 0;
 }
+
+/* about page */
 .about-section {
   background: #ffffff;
   padding: 1.8rem 2rem 1rem;
@@ -172,6 +174,7 @@ p {
   margin-top: 0;
 }
 
+/* installation + usage */
 .install-card {
   background: #0f2b3d;
   color: #e2e8f0;
@@ -236,7 +239,7 @@ pre code {
   margin-top: 0.5rem;
 }
 
-.lorem-note {
+.foot-note {
   background: #f1f9ff;
   padding: 1.8rem 2rem 1rem;
   border-radius: 18px;
@@ -250,6 +253,7 @@ pre code {
 .dependency-link:hover{
   color:rgb(125,125,150);
 }
+/* footer */
 footer {
   text-align: center;
   padding: 1.8rem 2rem;

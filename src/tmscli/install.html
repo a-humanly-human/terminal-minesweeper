@@ -16,7 +16,6 @@
         <a href="about.html">about</a>
         <a href="install.html" class="active">installation + usage</a>
         <a href="screenshots.html">screenshots</a>
-        <a href="changelog.html">changelog</a>
         <a href="play.html">play</a>
       </nav>
     </div>
@@ -29,7 +28,7 @@
     <div class="install-card">
       <h2>Install from PyPI</h2>
       <pre><code>pip install tmscli</code></pre>
-      <p>Once installed, the <code>tmscli</code> command becomes available in your terminal.</p>
+      <p>Once installed, the <code>tms</code> command becomes available in your terminal.</p>
     </div>
 
     <div class="usage-section">
@@ -67,13 +66,13 @@
       </table>
 
       <h3>Examples</h3>
-      <pre><code>tmscli</code></pre>
+      <pre><code>tms</code></pre>
       <p>Start with the default 9×9 board and 5 mines.</p>
 
-      <pre><code>tmscli -s 16 -m 40</code></pre>
+      <pre><code>tms -s 16 -m 40</code></pre>
       <p>Start with a 16×16 board containing 40 mines.</p>
 
-      <pre><code>tmscli --rules</code></pre>
+      <pre><code>tms --rules</code></pre>
       <p>Read the rules first, then start the game.</p>
     </div>
 
@@ -121,10 +120,15 @@ x
 |
 V</code></pre>
     </div>
+    <div class="usage-section">
+      <h2>To obtain top scores</h2>
+      <p>use command <code>top_score</code> for the default top 5</p>
+      <p>Alternatively, use <code>top_score -s SCORES</code> for the top <code>SCORES</code> amount of scores</p>
 
-    <div class="lorem-note">
+    </div>
+    <div class="foot-note">
       <h2>Version note</h2>
-      <p>v0.3.0 added a border to the minesweeper format and minor bug fixes. Update with:</p>
+      <p>v0.6.1 fixed most bugs that occured when using the leaderboard. Update with:</p>
       <pre><code>pip install --upgrade tmscli</code></pre>
     </div>
   </main>

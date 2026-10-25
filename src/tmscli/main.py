@@ -19,7 +19,7 @@ class minesweeper():
             writer.writerow([user,t,size,num,round(score)])
 
     def get_score(self,t,size,num):
-        ratio=size/num
+        ratio=size*2/num
         score=1000/(t*ratio)
         return t,size,num,score
     def colored(self,string):
@@ -272,7 +272,7 @@ def get_top(num=5):
         '-s','--scores',
         type=int,
         default=5,
-        help='set size to x'
+        help='Get top SCORES scores'
     )
     args=p.parse_args()
     if args.scores:
@@ -285,9 +285,12 @@ def get_top(num=5):
         r.sort(key=upper)
         r.reverse()
         for i in range(num):
-            print(str(i+1)+'. '+r[i][0])
-            for j in range(4):
-                print('    '+head[j]+': '+ r[i][j+1])
+            try:
+                print(str(i+1)+'. '+r[i][0])
+                for j in range(4):
+                    print('    '+head[j]+': '+ r[i][j+1])
+            except:
+                pass
                 
                 
 # get_top()
