@@ -3,9 +3,9 @@ import argparse
 import importlib.metadata
 import csv
 from time import time
-colors=['\033[31m','\033[32m','\033[33m','\033[34m','\033[35m','\033[36m','\033[37m','\033[38m','\033[39m']
-MINE='\033[30m'
-FLAG='\033[29m'
+colors=['\033[0m','\033[30m','\033[31m','\033[32m','\033[33m','\033[34m','\033[35m','\033[36m','\033[37m']
+MINE='\033[0m'
+FLAG='\033[0m'
 RESET = '\033[0m'
 
 class minesweeper():
@@ -118,7 +118,7 @@ class minesweeper():
     def check(self,board):
         if self.check_death(board):
             print('GAME OVER')
-            return True
+            return 2
         elif self.check_success(board):
             print('YOU WIN')
             return 1
@@ -294,4 +294,4 @@ def get_top(num=5):
                 
                 
 # get_top()
-# run()
+run()
