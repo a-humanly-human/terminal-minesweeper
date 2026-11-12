@@ -3,7 +3,7 @@ import argparse
 import importlib.metadata
 import csv
 from time import time
-colors=['\033[0m','\033[30m','\033[31m','\033[32m','\033[33m','\033[34m','\033[35m','\033[36m','\033[37m']
+colors=['\033[0m','\033[37m','\033[31m','\033[32m','\033[33m','\033[34m','\033[35m','\033[36m','\033[37m']
 MINE='\033[0m'
 FLAG='\033[0m'
 RESET = '\033[0m'
